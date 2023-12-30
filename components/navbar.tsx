@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ThemeController from './theme-controller';
 
 export default function Navbar() {
@@ -5,7 +6,9 @@ export default function Navbar() {
     return (
       <>
         <li>
-          <a>Item 1</a>
+          <Link href="/docs" className="">
+            Documentation
+          </Link>
         </li>
         <li>
           <a>Item 2</a>
@@ -42,12 +45,13 @@ export default function Navbar() {
               {navContent()}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">BBCode Templater</a>
+          <Link href="/" className="btn btn-ghost text-xl">
+            BBCode Templater
+          </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navContent()}</ul>
-        </div>
+        <div className="navbar-center hidden lg:flex"></div>
         <div className="navbar-end">
+          <ul className="menu menu-horizontal px-1">{navContent()}</ul>
           <ThemeController />
         </div>
       </div>

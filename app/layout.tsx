@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Navbar />
-        <div className="mx-auto w-full max-w-screen-xl">{children}</div>
+        <div className="mx-auto w-full max-w-screen-xl p-3">{children}</div>
         <Footer />
       </body>
     </html>

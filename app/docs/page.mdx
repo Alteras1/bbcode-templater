@@ -1,0 +1,52 @@
+# BBCode Templater (Draft)
+
+option A
+
+```
+&type|description&
+
+[b]&text|bold name here&[/b]
+```
+
+option B
+
+```
+&description|type&
+
+[b]&name|text&[/b]
+```
+
+option C
+
+```
+&description \ type&
+
+[b]&name \ text&[/b]
+```
+
+## Text/One Line
+
+If no type is specified, it will default to text.
+
+```
+&description&
+&description \ text&
+```
+
+## Content/Text Area
+
+Provides a larger text area for content.
+
+```
+&description \ content&
+```
+
+## Number
+
+Allows input of a number. Only difference from text is that it will only allow numbers. Provides checks for min and max values.
+
+```
+&description \ number&
+&description \ number \ default value&
+&description \ number \ default value \ min value \ max value&
+```
