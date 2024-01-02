@@ -8,7 +8,7 @@ import {
   NodeTree,
   RegularNode,
 } from '@/lib/parser/node';
-import parse from '@/lib/parser/parser';
+import { outputTemplateWithValues, parse } from '@/lib/parser/parser';
 import { Source_Code_Pro } from 'next/font/google';
 import { useState } from 'react';
 
@@ -30,23 +30,9 @@ export default function Home() {
 
   const outputBBCode = () => {
     console.log(output);
-    const generated = generateFinal(output);
+    const generated = outputTemplateWithValues(output);
     console.log(generated);
     setFinalOutput(generated);
-  };
-
-  const generateFinal = (formFieldTree: NodeTree) => {
-    let final = '';
-    for (const node of formFieldTree) {
-      if (typeof node === 'string') {
-        final += node;
-      } else if (node.type === 'group') {
-        final += generateFinal(node.children);
-      } else {
-        final += node.value || node.marker.original;
-      }
-    }
-    return final;
   };
 
   return (

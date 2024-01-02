@@ -1,5 +1,5 @@
 export const DELIMITER = '&';
-export const SEPARATOR = '|';
+export const SEPARATOR = '\\';
 
 export const isDelimiter = (char: string) => {
   return char === DELIMITER;

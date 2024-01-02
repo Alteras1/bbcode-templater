@@ -61,8 +61,6 @@ function buildOrderOfMarkers(input: string) {
   }
   orderOfMarkers.push(input.slice(lastIndex));
 
-  console.log(orderOfMarkers);
-
   return orderOfMarkers;
 }
 
@@ -143,10 +141,27 @@ function buildTree(orderOfMarkers: (Marker | string)[]): [NodeTree, NodeError[]]
     });
   }
 
-  console.log(tree);
-
   return [tree, errors];
 }
 
-export default parse;
+/**
+ * Walks the tree and returns a string with user input values.
+ * @param formFieldTree parsed tree with user input
+ * @returns string with user input values
+ */
+function outputTemplateWithValues(formFieldTree: NodeTree) {
+  let final = '';
+  for (const node of formFieldTree) {
+    if (typeof node === 'string') {
+      final += node;
+    } else if (node.type === 'group') {
+      final += outputTemplateWithValues(node.children);
+    } else {
+      final += node.value || node.marker.original;
+    }
+  }
+  return final;
+};
+
+export { parse, outputTemplateWithValues };
 export type { Marker };
