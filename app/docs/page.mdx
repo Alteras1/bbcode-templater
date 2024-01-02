@@ -26,10 +26,9 @@ option C
 
 ## Text/One Line
 
-If no type is specified, it will default to text.
+Provides a single line text input.
 
 ```
-&description&
 &description \ text&
 ```
 
@@ -49,4 +48,32 @@ Allows input of a number. Only difference from text is that it will only allow n
 &description \ number&
 &description \ number \ default value&
 &description \ number \ default value \ min value \ max value&
+```
+
+## Select
+
+Provides a drop down menu for selection. There is no limit to the number of values.
+
+```
+&description \ select \ value 1 \ value 2 \ value 3 \ ...&
+```
+
+## Group
+
+Groups multiple inputs together. This is useful for grouping multiple inputs together as a single category for the user. Supports nesting.
+
+Requires a `&end&` tag to close the group.
+
+```
+&description \ group&
+content in here is grouped together
+&description \ end&
+```
+
+Can also be used for repeated inputs.
+
+```
+&description \ group \ repeat&
+content in here is grouped together and can be repeated to user's desire
+&description \ end&
 ```

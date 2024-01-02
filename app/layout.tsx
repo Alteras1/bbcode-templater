@@ -16,8 +16,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  let initialTheme = 'default';
+  if (typeof window !== 'undefined') {
+    const theme = localStorage.getItem('theme');
+    if (theme) {
+      initialTheme = theme;
+    }
+  }
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme={initialTheme} suppressHydrationWarning>
       <body className={inter.className}>
         <Navbar />
         <div className="mx-auto w-full max-w-screen-xl p-3">{children}</div>
