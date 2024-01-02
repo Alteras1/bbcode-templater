@@ -1,13 +1,14 @@
 import { RegularNode } from '@/lib/parser/node';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function FormField({ node }: { node: RegularNode }) {
   const [value, setValue] = useState<string | number>(
     node.value || node.marker.defaultValue || ''
   );
-  useEffect(() => {
+  const setNodeValue = (value: string) => {
     node.value = value;
-  }, [node, value]);
+    setValue(value);
+  };
 
   switch (node.type) {
     case 'text':
@@ -21,7 +22,9 @@ export default function FormField({ node }: { node: RegularNode }) {
             placeholder={node.description}
             className="input input-bordered w-full max-w-xs"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => {
+              setNodeValue(e.target.value);
+            }}
           />
         </label>
       );
@@ -35,7 +38,7 @@ export default function FormField({ node }: { node: RegularNode }) {
             placeholder={node.description}
             className="textarea textarea-bordered w-full max-w-xs"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => setNodeValue(e.target.value)}
           />
         </label>
       );
@@ -52,7 +55,7 @@ export default function FormField({ node }: { node: RegularNode }) {
             value={value}
             max={node.marker.max}
             min={node.marker.min}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => setNodeValue(e.target.value)}
           />
         </label>
       );
@@ -66,7 +69,7 @@ export default function FormField({ node }: { node: RegularNode }) {
           <select
             className="select select-bordered w-full max-w-xs"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => setNodeValue(e.target.value)}
           >
             {node.marker.options!.map((option, index) => (
               <option key={index} value={option}>
