@@ -2,7 +2,9 @@ import { RegularNode } from '@/lib/parser/node';
 import { useEffect, useState } from 'react';
 
 export default function FormField({ node }: { node: RegularNode }) {
-  const [value, setValue] = useState<string | number>(node.value || '');
+  const [value, setValue] = useState<string | number>(
+    node.value || node.marker.defaultValue || ''
+  );
   useEffect(() => {
     node.value = value;
   }, [node, value]);
@@ -38,7 +40,6 @@ export default function FormField({ node }: { node: RegularNode }) {
         </label>
       );
     case 'number':
-      setValue(node.value || node.marker.defaultValue || '');
       return (
         <label className="form-control w-full max-w-xs">
           <div className="label">
