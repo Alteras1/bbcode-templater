@@ -6,7 +6,8 @@ type NestingNode = {
   markerStart: Marker;
   markerEnd?: Marker;
   repeat: boolean;
-  children: NodeTree;
+  originalChildren: NodeTree;
+  children: NodeTree[];
 };
 
 type RegularNode = {
