@@ -3,5 +3,6 @@
   "prettier.jsxSingleQuote": false,
   "prettier.requireConfig": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.useEditorConfig": true
+  "prettier.useEditorConfig": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -80,7 +80,7 @@ function buildTree(orderOfMarkers: (Marker | string)[]): [NodeTree, NodeError[]]
       if (currentNestingNode === null) {
         tree.push(marker);
       } else {
-        currentNestingNode.children.push(marker);
+        currentNestingNode.originalChildren.push(marker);
       }
       continue;
     }
@@ -90,13 +90,14 @@ function buildTree(orderOfMarkers: (Marker | string)[]): [NodeTree, NodeError[]]
         description: marker.description,
         markerStart: marker,
         repeat: marker.repeat!,
+        originalChildren: [],
         children: [],
       };
       if (currentNestingNode === null) {
         tree.push(node);
       } else {
         parentNodes.push(currentNestingNode);
-        currentNestingNode.children.push(node);
+        currentNestingNode.originalChildren.push(node);
       }
       currentNestingNode = node;
       continue;
@@ -124,7 +125,7 @@ function buildTree(orderOfMarkers: (Marker | string)[]): [NodeTree, NodeError[]]
     if (currentNestingNode === null) {
       tree.push(node);
     } else {
-      currentNestingNode.children.push(node);
+      currentNestingNode.originalChildren.push(node);
     }
     if (marker.error) {
       errors.push({
@@ -155,7 +156,7 @@ function outputTemplateWithValues(formFieldTree: NodeTree) {
     if (typeof node === 'string') {
       final += node;
     } else if (node.type === 'group') {
-      final += outputTemplateWithValues(node.children);
+      final += node.children.map((val) => outputTemplateWithValues(val)).join('');
     } else {
       final += node.value || node.marker.original;
     }
