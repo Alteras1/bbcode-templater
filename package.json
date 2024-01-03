@@ -1,5 +1,5 @@
 {
-  "name": "bbcode-templater",
+  "name": "text-templater",
   "version": "0.1.0",
   "private": true,
   "scripts": {

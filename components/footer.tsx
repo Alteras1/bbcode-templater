@@ -16,7 +16,7 @@ export default function Footer() {
           </Link>
           . The source code is available on{' '}
           <Link
-            href="https://github.com/Alteras1/bbcode-templater"
+            href="https://github.com/Alteras1/text-templater"
             target="_blank"
             rel="noreferrer"
             className="font-medium underline underline-offset-4"
