@@ -1,3 +1,17 @@
+## Development Roadmap
+
+- [x] Create working prototype
+- [ ] Update styles with Shadcn/ui
+- [ ] Improve debug mode with error outputs
+- [ ] Add API integration with pastebin for quick input
+- [ ] Add local save/cache recovery
+
+### Possible Future Changes
+
+- [ ] Consider rename to `Text Templater`?
+- [ ] Move to Vercel?
+- [ ] Consider Live Preview
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
