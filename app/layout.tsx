@@ -3,8 +3,10 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
+import { cn } from '@/lib/utils';
+import { ThemeProvider } from '@/components/theme-provider';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: 'BBCode Templater',
@@ -16,20 +18,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let initialTheme = 'default';
-  if (typeof window !== 'undefined') {
-    const theme = localStorage.getItem('theme');
-    if (theme) {
-      initialTheme = theme;
-    }
-  }
-
   return (
-    <html lang="en" data-theme={initialTheme} suppressHydrationWarning>
-      <body className={inter.className}>
-        <Navbar />
-        <div className="mx-auto w-full max-w-screen-xl p-3">{children}</div>
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          'min-h-screen bg-background font-sans antialiased',
+          inter.variable
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar />
+          <div className="mx-auto w-full max-w-screen-xl p-3">{children}</div>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

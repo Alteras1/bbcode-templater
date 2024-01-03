@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ThemeController from './theme-controller';
+import { ModeToggle } from './mode-toggle';
 
 export default function Navbar() {
   const navContent = () => {
@@ -18,7 +18,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="relative w-full bg-base-200">
+    <nav className="bg-base-200 relative w-full">
       <div className="navbar mx-auto w-full max-w-screen-xl">
         <div className="navbar-start">
           <div className="dropdown">
@@ -40,7 +40,7 @@ export default function Navbar() {
             </div>
             <ul
               tabIndex={0}
-              className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
+              className="menu dropdown-content menu-sm rounded-box bg-base-100 z-[1] mt-3 w-52 p-2 shadow"
             >
               {navContent()}
             </ul>
@@ -52,7 +52,7 @@ export default function Navbar() {
         <div className="navbar-center hidden lg:flex"></div>
         <div className="navbar-end">
           <ul className="menu menu-horizontal px-1">{navContent()}</ul>
-          <ThemeController />
+          <ModeToggle />
         </div>
       </div>
     </nav>
