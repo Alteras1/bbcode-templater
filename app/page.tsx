@@ -1,6 +1,9 @@
 'use client';
 
 import FormFieldGenerator from '@/components/form-fields/form-field-generator';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { NodeError, NodeTree } from '@/lib/parser/node';
 import { outputTemplateWithValues, parse } from '@/lib/parser/parser';
 import { Source_Code_Pro } from 'next/font/google';
@@ -30,24 +33,19 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <label className="form-control">
-        <div className="label">
-          <span className="label-text">Template Input</span>
-        </div>
-        <textarea
-          name="input"
-          className={
-            sourceCodePro.className +
-            ' textarea textarea-bordered h-24 w-full text-sm'
-          }
-          placeholder="Input your bbcode template here"
+    <main className="flex min-h-screen flex-col items-start gap-4">
+      <div className="grid w-full gap-1.5">
+        <Label htmlFor="template-input">Input Template</Label>
+        <Textarea
+          placeholder="Input your text template here."
+          id="template-input"
           onChange={(e) => setInput(e.target.value)}
-        ></textarea>
-      </label>
-      <button className="btn" onClick={parseInput}>
+          className={sourceCodePro.className}
+        />
+      </div>
+      <Button variant="outline" onClick={parseInput}>
         Generate Form Fields
-      </button>
+      </Button>
       <label className="form-control relative w-full min-w-full flex-row flex-wrap">
         <label
           htmlFor="debug-toggle"
@@ -59,8 +57,7 @@ export default function Home() {
           id="debug-toggle"
           name="debug-toggle"
           type="checkbox"
-          className="peer toggle toggle-info toggle-sm my-2 mr-1"
-          defaultChecked
+          className="toggle toggle-info toggle-sm peer my-2 mr-1"
         />
         <textarea
           name="parsed"
@@ -73,26 +70,23 @@ export default function Home() {
           readOnly
         ></textarea>
       </label>
-      template
+      <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+        Generated Form Fields
+      </h2>
       <FormFieldGenerator tree={output} />
-      <button className="btn" onClick={() => outputBBCode()}>
-        Generate BBCode
-      </button>
-      <label className="form-control">
-        <div className="label">
-          <span className="label-text">BBCode Output</span>
-        </div>
-        <textarea
-          name="output"
-          className={
-            sourceCodePro.className +
-            ' textarea textarea-bordered h-24 w-full text-sm'
-          }
-          placeholder="BBCode output will appear here"
+      <Button variant="outline" onClick={() => outputBBCode()}>
+        Generate Final Output
+      </Button>
+      <div className="grid w-full gap-1.5">
+        <Label htmlFor="template-output">Output</Label>
+        <Textarea
+          placeholder="Output will appear here."
+          id="template-output"
+          className={sourceCodePro.className}
           value={finalOutput}
           readOnly
-        ></textarea>
-      </label>
+        />
+      </div>
     </main>
   );
 }

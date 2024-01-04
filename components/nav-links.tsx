@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { Button, buttonVariants } from './ui/button';
+import { buttonVariants } from './ui/button';
 import { ModeToggle } from './mode-toggle';
 import { Icons } from './icons';
 import { usePathname } from 'next/navigation';
