@@ -8,7 +8,7 @@
 
 ### Possible Future Changes
 
-- [ ] Consider rename to `Text Templater`?
+- [x] Consider rename to `Text Templater`?
 - [ ] Move to Vercel?
 - [ ] Consider Live Preview
 
