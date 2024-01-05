@@ -79,7 +79,7 @@ const config: import('tailwindcss').Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require('@tailwindcss/typography'), require("tailwindcss-animate")],
 } satisfies Config;
 
 export default config;
