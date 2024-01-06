@@ -4,12 +4,7 @@ import rehypeSlug from 'rehype-slug';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  basePath: '/text-templater',
-  images: {
-    unoptimized: true,
-  },
 };
 
 const withMDX = createMDX({
