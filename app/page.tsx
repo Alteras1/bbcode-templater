@@ -5,7 +5,7 @@ import { TemplateInput } from '@/components/templater/template-input';
 import { GenerateOutput } from '@/components/templater/generate-output';
 import { TemplateDebug } from '@/components/templater/template-debug';
 
-export default async function Home({ params: { pastebin } }: { params: { pastebin: string } }) {
+export default async function Home({ searchParams: { pastebin } }: { searchParams: { pastebin: string } }) {
   const pastebinurl = pastebin ? 'https://pastebin.com/' + pastebin : '';
   const pastebinObj = {
     url: pastebinurl,
@@ -13,9 +13,7 @@ export default async function Home({ params: { pastebin } }: { params: { pastebi
     error: '',
   };
   if (pastebin) {
-    console.log('fetching pastebin: ', pastebin);
     const res = await getPastebin(`https://pastebin.com/${pastebin}`);
-    console.log('res: ', res);
     if ('error' in res) {
       pastebinObj.error = res.error;
     } else {
@@ -25,7 +23,7 @@ export default async function Home({ params: { pastebin } }: { params: { pastebi
 
   return (
     <main className="flex min-h-screen flex-col items-start gap-4">
-      <TemplateProvider>
+      <TemplateProvider templateInit={pastebinObj.content?.content || ''}>
         <TemplateInput pastebin={pastebinObj} />
         <label className="form-control relative w-full min-w-full flex-row flex-wrap">
           <TemplateDebug />
