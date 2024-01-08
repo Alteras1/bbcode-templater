@@ -9,7 +9,7 @@
 ### Possible Future Changes
 
 - [x] Consider rename to `Text Templater`?
-- [ ] Move to Vercel?
+- [x] Move to Vercel?
 - [ ] Consider Live Preview
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
