@@ -13,7 +13,6 @@ export function TemplateInput({ pastebin }: { pastebin: { url: string; error?: s
   const { templateInput, setTemplateInput, setNodeTree, setErrors } = useTemplateContext();
 
   const parseInput = () => {
-    console.log('parsing input');
     const [output, errors] = parse(templateInput);
     setNodeTree(output);
     setErrors(errors);

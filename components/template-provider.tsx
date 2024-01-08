@@ -1,6 +1,7 @@
 'use client';
 
 import { NodeError, NodeTree } from '@/lib/parser/node';
+import { parse } from '@/lib/parser/parser';
 import { createContext, useContext, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -15,10 +16,19 @@ type TemplateContextType = {
 
 const TemplateContext = createContext<TemplateContextType>(undefined as any as TemplateContextType);
 
-function TemplateProvider({ children }: { children: React.ReactNode }) {
-  const [templateInput, setTemplateInput] = useState('');
-  const [nodeTree, setNodeTree] = useState<NodeTree>([]);
-  const [errors, setErrors] = useState<NodeError[]>([]);
+function TemplateProvider({ templateInit, children }: { templateInit: string; children: React.ReactNode }) {
+  const [templateInput, setTemplateInput] = useState(templateInit || '');
+
+  let nodeTreeInit: NodeTree = [];
+  let errorsInit: NodeError[] = [];
+  if (templateInit) {
+    const [nodeTree, errors] = parse(templateInit);
+    errorsInit = errors;
+    nodeTreeInit = nodeTree;
+  }
+
+  const [nodeTree, setNodeTree] = useState<NodeTree>(nodeTreeInit);
+  const [errors, setErrors] = useState<NodeError[]>(errorsInit);
 
   return (
     <TemplateContext.Provider value={{ templateInput, setTemplateInput, nodeTree, setNodeTree, errors, setErrors }}>
