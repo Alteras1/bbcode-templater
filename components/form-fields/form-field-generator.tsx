@@ -1,16 +1,20 @@
-import { NodeTree } from '@/lib/parser/node';
+'use client';
+
 import FormFieldGroup from './form-field-group';
 import FormField from './form-field';
+import { useTemplateContext } from '../template-provider';
 
 /**
  * Handles the creation of form fields based on the parsed node tree
  * @param tree parsed node tree
  * @returns
  */
-export default function FormFieldGenerator({ tree }: { tree: NodeTree }) {
+export function FormFieldGenerator() {
+  const { nodeTree } = useTemplateContext();
+
   return (
     <div>
-      {tree.map((node, index) => {
+      {nodeTree.map((node, index) => {
         if (typeof node === 'string') {
           return;
         } else if (node.type === 'group') {
