@@ -5,7 +5,11 @@ import { TemplateInput } from '@/components/templater/template-input';
 import { GenerateOutput } from '@/components/templater/generate-output';
 import { TemplateDebug } from '@/components/templater/template-debug';
 
-export default async function Home({ searchParams: { pastebin } }: { searchParams: { pastebin: string } }) {
+type Props = {
+  searchParams: { pastebin: string };
+};
+
+export default async function Home({ searchParams: { pastebin } }: Props) {
   const pastebinurl = pastebin ? 'https://pastebin.com/' + pastebin : '';
   const pastebinObj = {
     url: pastebinurl,
