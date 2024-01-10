@@ -2,7 +2,7 @@
 
 import { NodeError, NodeTree } from '@/lib/parser/node';
 import { parse } from '@/lib/parser/parser';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 
 type TemplateContextType = {

@@ -37,13 +37,9 @@ export default function FormFieldGroup({ node }: { node: NestingNode }) {
     <>
       {childrenNodes.map((group, index) => {
         return (
-          <fieldset
-            className="border-2 border-primary p-3"
-            key={version + '_' + index}
-          >
-            <legend className="">Group: {node.description}</legend>
-            {childrenNodes.length > 1 &&
-              (index === 0 ? <>Original</> : <>Clone of {node.description}</>)}
+          <div key={version + '_' + index} className="flex items-center space-x-4 rounded-md border p-4">
+            <div className="text-lg font-semibold">{node.description}</div>
+            {childrenNodes.length > 1 && (index === 0 ? <>Original</> : <>Clone of {node.description}</>)}
             {index === 0 && node.repeat && (
               <button className="btn" onClick={duplicateChildren}>
                 Add
@@ -55,7 +51,7 @@ export default function FormFieldGroup({ node }: { node: NestingNode }) {
               </button>
             )}
             <FormFieldGroupItem group={group} />
-          </fieldset>
+          </div>
         );
       })}
     </>
