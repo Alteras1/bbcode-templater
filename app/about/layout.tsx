@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About - BBCode Templater',
+  title: 'About | BBCode Templater',
 };
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
