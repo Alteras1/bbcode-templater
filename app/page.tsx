@@ -25,7 +25,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       const pasteBinContent = pasteBinRes.metadata;
       if (pasteBinContent.title) {
         metadata.title = pasteBinContent.title + ' - Text Templater';
-        metadata.description = 'Plain Text Template to Form Field Generator for: ' + pasteBinContent.title;
+        metadata.description = 'Plain Text Template to Form Field Generator for ' + pasteBinContent.title;
       }
     }
   }
@@ -34,7 +34,6 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 }
 
 export default async function Home({ searchParams }: Props) {
-  console.log('rendered home', searchParams);
   const pastebinurl = searchParams?.pastebin ? 'https://pastebin.com/' + searchParams.pastebin : '';
   const pastebinObj = {
     url: pastebinurl,
@@ -50,6 +49,17 @@ export default async function Home({ searchParams }: Props) {
     }
   }
 
+  const titleSection = (title?: string, author?: string) => {
+    return (
+      <>
+        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+          {title || 'Generated Form Fields'}
+        </h2>
+        {author && <p className="text-xl text-muted-foreground">By {author}</p>}
+      </>
+    );
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-start gap-4">
       <TemplateProvider key={pastebinObj.content?.content || ''} templateInit={pastebinObj.content?.content || ''}>
@@ -57,9 +67,7 @@ export default async function Home({ searchParams }: Props) {
         <label className="form-control relative w-full min-w-full flex-row flex-wrap">
           <TemplateDebug />
         </label>
-        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-          Generated Form Fields
-        </h2>
+        {titleSection(pastebinObj.content?.metadata?.title, pastebinObj.content?.metadata?.author)}
         <FormFieldGenerator />
         <GenerateOutput />
       </TemplateProvider>
