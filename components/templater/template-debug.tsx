@@ -2,13 +2,14 @@
 
 import { sourceCodePro } from '@/lib/utils';
 import { useTemplateContext } from '../template-provider';
+import { Checkbox } from '../ui/checkbox';
 
 export function TemplateDebug() {
   const { nodeTree, errors } = useTemplateContext();
 
   return (
     <>
-      <label htmlFor="debug-toggle" className="label-text mr-12 cursor-pointer py-2 pl-1">
+      <label htmlFor="debug-toggle" className="mr-12 text-sm font-medium leading-none">
         Debug Mode
       </label>
       <input
