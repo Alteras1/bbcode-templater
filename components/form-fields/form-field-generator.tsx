@@ -13,7 +13,7 @@ export function FormFieldGenerator() {
   const { nodeTree } = useTemplateContext();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex w-full flex-col gap-4">
       {nodeTree.map((node, index) => {
         if (typeof node === 'string') {
           return;

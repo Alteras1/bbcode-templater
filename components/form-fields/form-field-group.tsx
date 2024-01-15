@@ -38,20 +38,20 @@ export default function FormFieldGroup({ node }: { node: NestingNode }) {
     <>
       {childrenNodes.map((group, index) => {
         return (
-          <div key={version + '_' + index} className="flex flex-col items-start rounded-md border p-4">
+          <div key={version + '_' + index} className="flex flex-col items-start gap-2 border-l-2 pl-4">
             <div className="text-lg font-semibold">{node.description}</div>
             {childrenNodes.length > 1 && (index === 0 ? <>Original</> : <>Clone of {node.description}</>)}
             {index === 0 && node.repeat && (
-              <Button variant="outline" onClick={duplicateChildren}>
+              <Button variant="outline" size="sm" onClick={duplicateChildren}>
                 Duplicate
               </Button>
             )}
             {index !== 0 && (
-              <Button variant="outline" onClick={() => removeChildren(index)}>
+              <Button variant="outline" size="sm" onClick={() => removeChildren(index)}>
                 Remove
               </Button>
             )}
-            <div className="flex flex-col gap-4">
+            <div className="flex w-full flex-col gap-4">
               <FormFieldGroupItem group={group} />
             </div>
           </div>

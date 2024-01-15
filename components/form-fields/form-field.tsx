@@ -43,7 +43,7 @@ export default function FormField({ node }: { node: RegularNode }) {
       );
     case 'number':
       return (
-        <div className="grid w-full max-w-sm items-center gap-1.5">
+        <div className="grid w-full max-w-md items-center gap-1.5">
           <Label htmlFor={id}>{node.description}</Label>
           <Input
             type="number"
@@ -58,13 +58,10 @@ export default function FormField({ node }: { node: RegularNode }) {
           />
         </div>
       );
-
     case 'select':
       return (
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text text-lg">{node.description}</span>
-          </div>
+        <div className="grid w-full max-w-md items-center gap-1.5">
+          <Label>{node.description}</Label>
           <RadioGroup onValueChange={(val) => setNodeValue(val)} required>
             {node.marker.options!.map((option, index) => (
               <div key={index} className="flex items-center space-x-2">
@@ -73,8 +70,7 @@ export default function FormField({ node }: { node: RegularNode }) {
               </div>
             ))}
           </RadioGroup>
-        </label>
+        </div>
       );
   }
-  return <div>{JSON.stringify(node)}</div>;
 }
