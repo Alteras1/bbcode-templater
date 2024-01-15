@@ -1,11 +1,12 @@
 import { NestingNode, NodeTree } from '@/lib/parser/node';
 import FormField from './form-field';
 import { useState } from 'react';
+import { Button } from '../ui/button';
 
 function FormFieldGroupItem({ group }: { group: NodeTree }) {
   return group.map((childNode, index) => {
     if (typeof childNode === 'string') {
-      return childNode;
+      return;
     } else if (childNode.type === 'group') {
       return <FormFieldGroup key={index} node={childNode} />;
     } else {
@@ -37,20 +38,22 @@ export default function FormFieldGroup({ node }: { node: NestingNode }) {
     <>
       {childrenNodes.map((group, index) => {
         return (
-          <div key={version + '_' + index} className="flex items-center space-x-4 rounded-md border p-4">
+          <div key={version + '_' + index} className="flex flex-col items-start rounded-md border p-4">
             <div className="text-lg font-semibold">{node.description}</div>
             {childrenNodes.length > 1 && (index === 0 ? <>Original</> : <>Clone of {node.description}</>)}
             {index === 0 && node.repeat && (
-              <button className="btn" onClick={duplicateChildren}>
-                Add
-              </button>
+              <Button variant="outline" onClick={duplicateChildren}>
+                Duplicate
+              </Button>
             )}
             {index !== 0 && (
-              <button className="btn" onClick={() => removeChildren(index)}>
+              <Button variant="outline" onClick={() => removeChildren(index)}>
                 Remove
-              </button>
+              </Button>
             )}
-            <FormFieldGroupItem group={group} />
+            <div className="flex flex-col gap-4">
+              <FormFieldGroupItem group={group} />
+            </div>
           </div>
         );
       })}

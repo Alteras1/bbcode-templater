@@ -34,7 +34,7 @@ Allows input of a number. Only difference from text is that it will only allow n
 
 ## Select
 
-Provides a drop down menu for selection. There is no limit to the number of values.
+Provides a radio button group for selection. There is no limit to the number of values.
 
 ```
 &description \ select \ value 1 \ value 2 \ value 3 \ ...&
@@ -44,7 +44,7 @@ Provides a drop down menu for selection. There is no limit to the number of valu
 
 Groups multiple inputs together. This is useful for grouping multiple inputs together as a single category for the user. Supports nesting.
 
-Requires a `&end&` tag to close the group.
+Requires a `&end&` or `&description \ end&` tag to close the group.
 
 ```
 &description \ group&
