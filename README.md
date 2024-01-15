@@ -1,3 +1,9 @@
+# Text Templater
+
+A plain text to form field generator. This app is designed to take in some plain text with some special syntax, process it, and create some for form fields for users to fill out. Once the user has filled out the fields, they can click generate, and it'll use the inputs to replace the special syntax in the plain text for output.
+
+This is primarily designed for RpNation's BBCode community as a generic templater solution. Due to the language agnostic nature of the syntax, it should work for pratically any plain text use case.
+
 ## Development Roadmap
 
 - [x] Create working prototype
@@ -34,17 +40,12 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Technologies used
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Next.js (14)
+  - SSR + ISR
+- Tailwindcss (and minor custom styles)
+- Shadcn/ui
+- MDX
+- lucide icons
+- Vercel for hosting and deployment
