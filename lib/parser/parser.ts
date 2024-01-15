@@ -38,6 +38,20 @@ function buildOrderOfMarkers(input: string) {
     const delimiterIndex = delimiterIndices[i];
     const nextDelimiterIndex = delimiterIndices[i + 1];
     const possibleMarker = input.slice(delimiterIndex + 1, nextDelimiterIndex);
+
+    if (possibleMarker.trim().toLowerCase() === 'end') {
+      // unique case for end marker as &end& instead of &desc \ end&
+      const marker = markerList.end(possibleMarker);
+      marker.indices = [delimiterIndex, nextDelimiterIndex];
+
+      // Add text before marker
+      orderOfMarkers.push(input.slice(lastIndex, delimiterIndex));
+      orderOfMarkers.push(marker);
+      lastIndex = nextDelimiterIndex + 1;
+      i++;
+      continue;
+    }
+
     if (possibleMarker.indexOf(SEPARATOR) === -1) {
       // No separator, not a marker
       continue;

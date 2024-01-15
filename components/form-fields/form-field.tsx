@@ -1,7 +1,9 @@
 import { RegularNode } from '@/lib/parser/node';
-import { use, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { Label } from '../ui/label';
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
 
 export default function FormField({ node }: { node: RegularNode }) {
   const [value, setValue] = useState<string | number>(node.value || node.marker.defaultValue || '');
@@ -14,51 +16,47 @@ export default function FormField({ node }: { node: RegularNode }) {
   switch (node.type) {
     case 'text':
       return (
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text text-lg">{node.description}</span>
-          </div>
-          <input
+        <div className="grid w-full max-w-md items-center gap-1.5">
+          <Label htmlFor={id}>{node.description}</Label>
+          <Input
             type="text"
+            id={id}
             placeholder={node.description}
-            className="input input-bordered w-full max-w-xs"
             value={value}
             onChange={(e) => {
               setNodeValue(e.target.value);
             }}
           />
-        </label>
+        </div>
       );
     case 'content':
       return (
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text text-lg">{node.description}</span>
-          </div>
-          <textarea
+        <div className="grid w-full gap-1.5">
+          <Label htmlFor={id}>{node.description}</Label>
+          <Textarea
             placeholder={node.description}
-            className="textarea textarea-bordered w-full max-w-xs"
+            id={id}
             value={value}
             onChange={(e) => setNodeValue(e.target.value)}
           />
-        </label>
+        </div>
       );
     case 'number':
       return (
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text text-lg">{node.description}</span>
-          </div>
-          <input
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor={id}>{node.description}</Label>
+          <Input
             type="number"
+            id={id}
             placeholder={node.description}
-            className="input input-bordered w-full max-w-xs"
             value={value}
             max={node.marker.max}
             min={node.marker.min}
-            onChange={(e) => setNodeValue(e.target.value)}
+            onChange={(e) => {
+              setNodeValue(e.target.value);
+            }}
           />
-        </label>
+        </div>
       );
 
     case 'select':
