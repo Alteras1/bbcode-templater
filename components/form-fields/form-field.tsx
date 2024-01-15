@@ -26,6 +26,7 @@ export default function FormField({ node }: { node: RegularNode }) {
             onChange={(e) => {
               setNodeValue(e.target.value);
             }}
+            required
           />
         </div>
       );
@@ -38,6 +39,7 @@ export default function FormField({ node }: { node: RegularNode }) {
             id={id}
             value={value}
             onChange={(e) => setNodeValue(e.target.value)}
+            required
           />
         </div>
       );
@@ -55,6 +57,7 @@ export default function FormField({ node }: { node: RegularNode }) {
             onChange={(e) => {
               setNodeValue(e.target.value);
             }}
+            required
           />
         </div>
       );
