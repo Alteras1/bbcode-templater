@@ -57,8 +57,15 @@ export default function FormField({ node }: { node: RegularNode }) {
             onChange={(e) => {
               setNodeValue(e.target.value);
             }}
+            aria-describedby={id + '-num-desc'}
             required
           />
+          {(node.marker.max || node.marker.min) && (
+            <p id={id + '-num-desc'} className="text-sm text-muted-foreground">
+              {node.marker.min ? 'Minimum: ' + node.marker.min : ''}{' '}
+              {node.marker.max ? 'Maximum: ' + node.marker.max : ''}
+            </p>
+          )}
         </div>
       );
     case 'select':
