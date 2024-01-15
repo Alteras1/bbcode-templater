@@ -9,8 +9,9 @@ This is primarily designed for RpNation's BBCode community as a generic template
 - [x] Create working prototype
 - [ ] Update styles with Shadcn/ui
 - [ ] Improve debug mode with error outputs
-- [ ] Add API integration with pastebin for quick input
+- [x] Add API integration with pastebin for quick input
 - [ ] Add local save/cache recovery
+- [ ] Add API integration with GitHub and GitHub Gist for quick input
 
 ### Possible Future Changes
 
