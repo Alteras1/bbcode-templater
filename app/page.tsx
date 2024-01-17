@@ -52,9 +52,9 @@ export default async function Home({ searchParams }: Props) {
   const titleSection = (title?: string, author?: string) => {
     return (
       <>
-        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
           {title || 'Generated Form Fields'}
-        </h2>
+        </h1>
         {author && <p className="text-xl text-muted-foreground">By {author}</p>}
       </>
     );
