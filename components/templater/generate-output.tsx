@@ -11,11 +11,21 @@ import { sourceCodePro } from '@/lib/utils';
 export function GenerateOutput() {
   const [output, setOutput] = useState('');
   const { nodeTree } = useTemplateContext();
+  const [copySuccess, setCopySuccess] = useState('');
 
   const outputBBCode = () => {
     const generated = outputTemplateWithValues(nodeTree);
     console.log(generated);
     setOutput(generated);
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(output);
+      setCopySuccess('Copied!');
+    } catch (err) {
+      setCopySuccess('Failed to copy!');
+    }
   };
 
   return (
@@ -33,6 +43,12 @@ export function GenerateOutput() {
           readOnly
         />
       </div>
+      {output && (
+        <Button variant="outline" onClick={copyToClipboard}>
+          Copy to Clipboard
+        </Button>
+      )}
+      {copySuccess && <div>{copySuccess}</div>}
     </>
   );
 }
