@@ -6,8 +6,6 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 
 type TemplateContextType = {
-  templateInput: string;
-  setTemplateInput: Dispatch<SetStateAction<string>>;
   nodeTree: NodeTree;
   setNodeTree: Dispatch<SetStateAction<NodeTree>>;
   errors: NodeError[];
@@ -17,8 +15,6 @@ type TemplateContextType = {
 const TemplateContext = createContext<TemplateContextType>(undefined as any as TemplateContextType);
 
 function TemplateProvider({ templateInit, children }: { templateInit: string; children: React.ReactNode }) {
-  const [templateInput, setTemplateInput] = useState(templateInit || '');
-
   let nodeTreeInit: NodeTree = [];
   let errorsInit: NodeError[] = [];
   if (templateInit) {
@@ -31,9 +27,7 @@ function TemplateProvider({ templateInit, children }: { templateInit: string; ch
   const [errors, setErrors] = useState<NodeError[]>(errorsInit);
 
   return (
-    <TemplateContext.Provider value={{ templateInput, setTemplateInput, nodeTree, setNodeTree, errors, setErrors }}>
-      {children}
-    </TemplateContext.Provider>
+    <TemplateContext.Provider value={{ nodeTree, setNodeTree, errors, setErrors }}>{children}</TemplateContext.Provider>
   );
 }
 

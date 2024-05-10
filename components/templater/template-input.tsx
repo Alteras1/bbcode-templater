@@ -8,9 +8,11 @@ import { useTemplateContext } from '@/components/template-provider';
 import { Button } from '@/components/ui/button';
 import { sourceCodePro } from '@/lib/utils';
 import { parse } from '@/lib/parser/parser';
+import { useState } from 'react';
 
 export function TemplateInput({ pastebin }: { pastebin: { url: string; error?: string; content: getPastebinResult } }) {
-  const { templateInput, setTemplateInput, setNodeTree, setErrors } = useTemplateContext();
+  const { setNodeTree, setErrors } = useTemplateContext();
+  const [templateInput, setTemplateInput] = useState(pastebin.content?.content || '');
 
   const parseInput = () => {
     const [output, errors] = parse(templateInput);
