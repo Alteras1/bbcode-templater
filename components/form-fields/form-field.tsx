@@ -44,6 +44,12 @@ export default function FormField({ node }: { node: RegularNode }) {
         </div>
       );
     case 'number':
+      const props = Object.assign(
+        {},
+        Number.isNaN(node.marker.max) ? null : { max: node.marker.max },
+        Number.isNaN(node.marker.min) ? null : { min: node.marker.min },
+        value === '' ? null : { value }
+      );
       return (
         <div className="grid w-full max-w-md items-center gap-1.5">
           <Label htmlFor={id}>{node.description}</Label>
@@ -51,16 +57,14 @@ export default function FormField({ node }: { node: RegularNode }) {
             type="number"
             id={id}
             placeholder={node.description}
-            value={value}
-            max={node.marker.max}
-            min={node.marker.min}
             onChange={(e) => {
               setNodeValue(e.target.value);
             }}
+            {...props}
             aria-describedby={id + '-num-desc'}
             required
           />
-          {(node.marker.max || node.marker.min) && (
+          {(props.max || props.min) && (
             <p id={id + '-num-desc'} className="text-sm text-muted-foreground">
               {node.marker.min ? 'Minimum: ' + node.marker.min : ''}{' '}
               {node.marker.max ? 'Maximum: ' + node.marker.max : ''}
