@@ -8,7 +8,7 @@ import { DELIMITER, SEPARATOR } from './utils';
 type Marker = {
   type: string;
   description: string;
-  defaultValue?: number;
+  defaultValue?: number | string;
   min?: number;
   max?: number;
   options?: string[];
@@ -19,10 +19,11 @@ type Marker = {
 };
 
 const text = (input: string): Marker => {
-  const description = input.slice(0, input.indexOf(SEPARATOR));
+  const [description, type, defaultValue = ''] = input.split(SEPARATOR);
   return {
     type: 'text',
     description: description.trim(),
+    defaultValue: defaultValue.trim(),
     original: DELIMITER + input + DELIMITER
   };
 };
