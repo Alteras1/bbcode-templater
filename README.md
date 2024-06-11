@@ -4,19 +4,13 @@ A plain text to form field generator. This app is designed to take in some plain
 
 This is primarily designed for RpNation's BBCode community as a generic templater solution. Due to the language agnostic nature of the syntax, it should work for pratically any plain text use case.
 
-## Development Roadmap
+## Development Roadmap/TODOs
 
-- [x] Create working prototype
-- [ ] Update styles with Shadcn/ui
-- [ ] Improve debug mode with error outputs
-- [x] Add API integration with pastebin for quick input
 - [ ] Add local save/cache recovery
 - [ ] Add API integration with GitHub and GitHub Gist for quick input
 
 ### Possible Future Changes
 
-- [x] Consider rename to `Text Templater`?
-- [x] Move to Vercel?
 - [ ] Consider Live Preview
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
@@ -26,13 +20,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
