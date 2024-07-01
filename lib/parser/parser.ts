@@ -136,6 +136,9 @@ function buildTree(orderOfMarkers: (Marker | string)[]): [NodeTree, NodeError[]]
       description: marker.description,
       marker: marker
     };
+    if (marker.defaultValue) {
+      node.value = marker.defaultValue;
+    }
     if (currentNestingNode === null) {
       tree.push(node);
     } else {
@@ -172,7 +175,7 @@ function outputTemplateWithValues(formFieldTree: NodeTree) {
     } else if (node.type === 'group') {
       final += node.children.map((val) => outputTemplateWithValues(val)).join('');
     } else {
-      final += node.value || node.marker.original;
+      final += node.value || node.marker.defaultValue || node.marker.original;
     }
   }
   return final;
